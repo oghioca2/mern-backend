@@ -15,15 +15,6 @@ app.use(cors())
 //routes
 readdirSync('./routes').map((route) => app.use('/api/v1', require('./routes/' + route)))
 
-// Accessing the path module
-const path = require("path");
-
-app.use(express.static(path.resolve(__dirname, "./frontend/build")));
-
-app.get("*", function (request, response) {
-    response.sendFile(path.resolve(__dirname, "./frontend/build", "index.html"));
-});
-
 const server = () => {
     db()
     app.listen(PORT, () => {
